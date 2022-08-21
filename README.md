@@ -1,4 +1,4 @@
-Sigmoid Function:
+$Sigmoid Function:
 
 
 Motivation:
