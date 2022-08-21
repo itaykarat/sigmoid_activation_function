@@ -1,4 +1,4 @@
-Sigmoid Activation Function In Neural Networks:
+Sigmoid Function:
 
 
 Motivation:
