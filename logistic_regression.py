@@ -1,7 +1,3 @@
-import torch
-import numpy as np
-import matplotlib.pyplot as plt
-
 
 """"
 Motivation:
@@ -17,44 +13,58 @@ Properties of the sigmoid function:
    * The function is monotonically increasing.
    * The function is continuous everywhere.
    * The function is differentiable everywhere in its domain.
+   
+   
+   
+Mathematical notations: 
+
+    Sigmoid(z) = 1/(1+e^(-z))
+    where z is a linear function from the form y = ax+b
+    
+    The sigmoid function maps the real line onto [0,1]
+    sig(x) : (-∞, +∞) --> (0, +1)
+    
+    
+
+probabilistic interpretation: likelihood function of our target
+
+    Let's assume we have a binary classification problem,    
+    X = {X1,...Xn} ; will be our data set
+    Y = {class_0,class_1} ; will be the discrete classes of the problem
+    Xi ∈ Y <===> Xi ∈ {1,0}
+
+
+    sig(Xi) can represent the probability of that Xi to be clustered as class_1
+    
+    y_hat = P(Y=1 |x)
+    if y_hat == 0.7 ---- > that means that the input detected as class 1 by 70% liklihood.
 
 """
 
-# ---------------------------- HELPERS ----------------------------
-
-def convert_numpy_array_to_pytorch(x):
-    x = torch.from_numpy(x)
-    return x
-
-
-def create_data():
-    x = np.arange(-8, 8, 0.01)
-    x = convert_numpy_array_to_pytorch(x)
-    return x
+import torch # pytorch API useful for deep learning implementations
+import matplotlib.pyplot as plt # matplotlib API for visualization using plots
 
 
 # ---------------------------- sigmoid class ----------------------------
 
 
 class sigmoid:
-    def __init__(self, data):
-        self.data = data
+    def __init__(self, Data_points):
+        self.Data_points = Data_points
 
-    def logistic(self, Z):
-        return 1 / (1 + torch.exp(-Z))
+    def logistic(self, Data_points):
+        return 1 / (1 + torch.exp(-Data_points))
 
-    def calculate_y_yat(self, X):
-        y_hat = self.logistic(X)
+    def calculate_y_yat(self):
+        y_hat = self.logistic(self.Data_points)
         return y_hat
 
-    def plot_graph(self, x, y_hat):
+    def plot_graph(self,y_hat):
         plt.title("Sigmoid activation function")
-        plt.plot(self, x, y_hat)
+        plt.plot(self.Data_points, y_hat)
         plt.show()
 
 
-if __name__ == '__main__':
-    data = create_data()
-    sigmoid_obj = sigmoid(data=data)
-    y_hat = sigmoid_obj.calculate_y_yat(data)
-    sigmoid_obj.plot_graph(data, y_hat)
+
+
+
