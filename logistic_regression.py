@@ -20,9 +20,6 @@ Properties of the sigmoid function:
 
 """
 
-
-
-
 # ---------------------------- HELPERS ----------------------------
 
 def convert_numpy_array_to_pytorch(x):
